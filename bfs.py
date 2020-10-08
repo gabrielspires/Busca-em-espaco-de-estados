@@ -1,0 +1,2 @@
+def bfs(mapa):
+    pass

@@ -1,0 +1,2 @@
+def ids(mapa):
+    pass
