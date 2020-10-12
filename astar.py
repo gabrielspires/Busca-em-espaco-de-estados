@@ -1,2 +1,2 @@
-def a_star(mapa):
+def a_star(mapa, max_passos):
     pass

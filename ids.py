@@ -1,2 +1,2 @@
-def ids(mapa):
+def ids(mapa, max_passos):
     pass

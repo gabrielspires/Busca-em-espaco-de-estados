@@ -1,2 +1,2 @@
-def dfs(mapa):
+def dfs(mapa, max_passos):
     pass
