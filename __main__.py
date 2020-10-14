@@ -22,9 +22,9 @@ if __name__ == "__main__":
         for linha in entrada:
             mapa.append(list(linha[0:-1]))
 
-    show_map(mapa)
+    # show_map(mapa)
     start_points = find_start_points(mapa, largura_galpao, altura_galpao)
-    print("Starting points: ", start_points)
+    # print("Starting points: ", start_points)
     # pp(find_neighbors(mapa))
 
     if algoritmo == "BFS":

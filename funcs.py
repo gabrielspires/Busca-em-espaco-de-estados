@@ -1,3 +1,6 @@
+from colorama import Back, Fore, Style
+
+
 def find_neighbors(mapa):
     graph = {}
     valid_points = [".", "#", "$"]
@@ -53,12 +56,35 @@ def show_map(mapa):
     num_coluna = 0
     print(3 * " ", end="")
     for _ in range(len(mapa[0])):
-        print("{:<2}".format(num_coluna), end=" ")
+        print("{:<3}".format(num_coluna), end=" ")
         num_coluna += 1
     print()
     for linha in mapa:
-        print(num_linha, end="  ")
+        print(num_linha, end=" ")
         num_linha += 1
         for caractere in linha:
-            print("{:<2}".format(caractere), end=" ")
+            print("{:<3}".format(caractere), end=" ")
+        print()
+
+
+def show_path(mapa, path):
+    num_linha = 0
+    num_coluna = 0
+    print(3 * " ", end="")
+    for _ in range(len(mapa[0])):
+        print("{:<3}".format(num_coluna), end="")
+        num_coluna += 1
+    print()
+    for i in range(len(mapa)):
+        print(num_linha, end="  ")
+        num_linha += 1
+        for j in range(len(mapa[i])):
+            if [i, j] in path:
+                print(
+                    Back.LIGHTWHITE_EX + Fore.BLACK + "{:<3}".format(mapa[i][j]),
+                    end="",
+                )
+                print(Style.RESET_ALL, end="")
+            else:
+                print("{:<3}".format(mapa[i][j]), end="")
         print()
