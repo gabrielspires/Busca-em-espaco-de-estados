@@ -1,8 +1,8 @@
 from funcs import find_start_points, find_neighbors, show_path
 
 
-def bfs(mapa, max_passos, altura_galpao, largura_galpao):
-    start_points = find_start_points(mapa, largura_galpao, altura_galpao)
+def bfs(mapa, max_passos):
+    start_points = find_start_points(mapa)
     graph = find_neighbors(mapa)
     visited = []
     queue = []
@@ -28,7 +28,7 @@ def bfs(mapa, max_passos, altura_galpao, largura_galpao):
                 path[0] = max_passos
 
             if mapa[node[0]][node[1]] == "$":
-                # print("Objetivo encontrado!")
+                # Objetivo encontrado!
                 paths.append(path)
                 break
 
@@ -46,7 +46,5 @@ def bfs(mapa, max_passos, altura_galpao, largura_galpao):
         if len(path) < len(shortest_path):
             shortest_path = path
 
-    # print("Shortest: ", shortest_path)
     show_path(mapa, shortest_path)
-
     print(len(shortest_path) - 2, shortest_path[1], shortest_path[2])

@@ -31,20 +31,24 @@ def find_neighbors(mapa):
     return graph
 
 
-def find_start_points(mapa, largura_galpao, altura_galpao):
+def find_start_points(mapa):
     start_points = []
     valid_points = [".", "#", "$"]
+    largura_galpao = len(mapa[0])
+    altura_galpao = len(mapa)
 
     # Primeira e última linha
     for i in range(largura_galpao):
+        # Primeira e ultima linha
         if mapa[0][i] in valid_points:
             start_points.append([0, i])
         if mapa[altura_galpao - 1][i] in valid_points:
             start_points.append([altura_galpao - 1, i])
 
     for i in range(altura_galpao):
+        # Primeira e ultima coluna
         if mapa[i][0] in valid_points:
-            start_points.append([i][0])
+            start_points.append([i, 0])
         if mapa[i][largura_galpao - 1] in valid_points:
             start_points.append([i, largura_galpao - 1])
 
@@ -76,7 +80,7 @@ def show_path(mapa, path):
         num_coluna += 1
     print()
     for i in range(len(mapa)):
-        print(num_linha, end="  ")
+        print("{:<3}".format(num_linha), end="")
         num_linha += 1
         for j in range(len(mapa[i])):
             if [i, j] in path:
@@ -87,4 +91,5 @@ def show_path(mapa, path):
                 print(Style.RESET_ALL, end="")
             else:
                 print("{:<3}".format(mapa[i][j]), end="")
-        print()
+        print("")
+    print()
