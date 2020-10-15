@@ -23,8 +23,6 @@ def dfs_search(mapa, graph, max_passos, visited, node, path):
             new_path.append(neighbour)
             if valid_path := dfs_search(mapa, graph, max_passos, visited, neighbour, new_path):
                 paths_found.append(valid_path)
-    else:
-        return
 
 
 def dfs(mapa, max_passos):
