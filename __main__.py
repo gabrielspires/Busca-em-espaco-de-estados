@@ -5,6 +5,7 @@ from dfs import dfs
 from ids import ids
 from astar import a_star
 
+# from funcs import show_map
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -25,6 +26,8 @@ if __name__ == "__main__":
     elif algoritmo == "dfs":
         dfs(mapa, max_passos)
     elif algoritmo == "ids":
-        ids(mapa, max_passos, altura_galpao, largura_galpao)
+        ids(mapa, max_passos)
     elif algoritmo == "a_star":
-        a_star(mapa, max_passos, altura_galpao, largura_galpao)
+        a_star(mapa, max_passos)
+
+    # show_map(mapa)
