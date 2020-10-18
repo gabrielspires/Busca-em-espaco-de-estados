@@ -1,4 +1,4 @@
-from funcs import find_start_points, find_neighbors, show_path
+from funcs import find_start_points, find_neighbors
 
 
 def bfs(mapa, max_passos):
@@ -47,5 +47,5 @@ def bfs(mapa, max_passos):
         if len(path) < len(shortest_path):
             shortest_path = path
 
-    show_path(mapa, shortest_path)
     print(len(shortest_path) - 2, shortest_path[1], shortest_path[2])
+    return shortest_path

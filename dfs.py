@@ -1,4 +1,4 @@
-from funcs import find_start_points, find_neighbors, show_path
+from funcs import find_start_points, find_neighbors
 
 paths_found = []
 
@@ -35,9 +35,9 @@ def dfs(mapa, max_passos):
 
     shortest_path = paths_found[0]
     for path in paths_found:
-        print(path, end="\n\n")
+        # print(path, end="\n\n")
         if len(path) < len(shortest_path):
             shortest_path = path
 
-    show_path(mapa, shortest_path)
     print(len(shortest_path) - 2, shortest_path[1], shortest_path[2])
+    return shortest_path

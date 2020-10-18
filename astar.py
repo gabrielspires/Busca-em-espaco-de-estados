@@ -19,21 +19,21 @@ def a_star(mapa, max_passos):
     graph = find_neighbors(mapa)
 
     paths = []
-    queue = []
+
     # Initialize open and close lists
     open_list = []
     close_list = []
     pts_loc_visitados = 0
     for entrance in start_points:
-        # Put the starting point on the open list with f=0
+        passos_restantes = max_passos
+        passos = 0
         open_list.clear()
         close_list.clear()
-        open_list.append([0, 0, 0, entrance])
-
-        queue.clear()
-        passos_restantes = max_passos
         pts_loc_visitados = 0
-        queue.append([passos_restantes, pts_loc_visitados, entrance])
+
+        goal_is_found = False
+        # Put the starting point on the open list with f=0
+        open_list.append([0, 0, 0, passos_restantes, pts_loc_visitados, passos, entrance, entrance])
 
         while open_list:
             # find the node with the least f on the open list
@@ -42,25 +42,42 @@ def a_star(mapa, max_passos):
                 if node[0] < q[0]:
                     q = node
             open_list.remove(q)
+            q[3] -= 1
+            if goal_is_found:
+                # print(q, entrance)
+                break
 
-            for neighbor in graph[str(q[3])]:
-                if mapa[neighbor[0]][neighbor[1]] == "$":
-                    print("Objetivo encontrado! Posição:", neighbor)
-                    return
-                if mapa[neighbor[0]][neighbor[1]] == "#":
-                    pts_loc_visitados += 1
+            # return
+            # print(q[-2])
+            if mapa[q[-1][0]][q[-1][1]] == "#":
+                q[5] += 1
+                q[4] += 1
+                q[3] = max_passos
+                # print(q[-1][0], q[-1][1])
+            elif mapa[q[-1][0]][q[-1][1]] == "$":
+                q[5] += 1
+                # print("Objetivo encontrado! Posição:", q[5], q[4], q[-2])
+                paths.append(q)
+                goal_is_found = True
+            else:
+                q[5] += 1
+
+            for neighbor in graph[str(q[-1])]:
+
+                if q[3] <= 0 and mapa[neighbor[0]][neighbor[1]] != "#":
+                    continue
 
                 g = q[1] + 1
                 h = manhattan_distance(neighbor, goal)
                 f = g + h
-                successor = [f, g, h, neighbor]
+                successor = [f, g, h, q[3], q[4], q[5], q[-2], neighbor]
                 openlist_have_better_node = False
                 closelist_have_better_node = False
                 for node in open_list:
-                    if node[3] == neighbor and node[0] < f:
+                    if node[-1] == neighbor and node[0] < f:
                         openlist_have_better_node = True
                 for node in close_list:
-                    if node[3] == neighbor and node[0] < f:
+                    if node[-1] == neighbor and node[0] < f:
                         closelist_have_better_node = True
                 if openlist_have_better_node or closelist_have_better_node:
                     continue
@@ -68,3 +85,12 @@ def a_star(mapa, max_passos):
                     open_list.append(successor)
             close_list.append(q)
             # print(open_list, pts_loc_visitados)
+
+    shortest_path = paths[0]
+    for solution in paths:
+        # print(solution[5], shortest_path[5])
+        # print(path, len(path) - 2, end="\n\n\n")
+        if solution[5] < shortest_path[5]:
+            shortest_path = solution
+
+    print(shortest_path[5], shortest_path[4], shortest_path[-2])
