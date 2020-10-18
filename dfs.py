@@ -35,6 +35,7 @@ def dfs(mapa, max_passos):
 
     shortest_path = paths_found[0]
     for path in paths_found:
+        print(path, end="\n\n")
         if len(path) < len(shortest_path):
             shortest_path = path
 

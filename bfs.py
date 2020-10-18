@@ -43,6 +43,7 @@ def bfs(mapa, max_passos):
 
     shortest_path = paths[0]
     for path in paths:
+        # print(path, len(path) - 2, end="\n\n\n")
         if len(path) < len(shortest_path):
             shortest_path = path
 

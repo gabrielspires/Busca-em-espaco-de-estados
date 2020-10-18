@@ -6,10 +6,10 @@ paths_found = []
 def dls(mapa, graph, max_passos, node, path, max_depth, visited):
     if node not in visited:
         visited.append(node)
-        # print(node, "visitado")
+
         # Max_passos--
         path[0] -= 1
-        # print(path, max_depth, "cu")
+
         if mapa[node[0]][node[1]] == "#":
             path[1] += 1
             path[0] = max_passos
